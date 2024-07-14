@@ -3,3 +3,4 @@ django-rest-auth
 djangorestframework
 djangorestframework-jwt
 psycopg
+django-widget-tweaks

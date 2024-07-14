@@ -1,0 +1,23 @@
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario Persona</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'form/static/form/style.css' %}">
+</head>
+<body>
+    <h1>Formulario Persona</h1>
+    <h1 id="saludo">Formulario Persona</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- {{ form.as_p }} -->
+          {{form.nombre}}
+          {%render_field form.nombre placeholder="Nombre y apellido" class+="form-contorl" %}
+        
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
