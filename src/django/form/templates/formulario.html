@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %} Inscripcion a talleres {% endblock %}
+<head>
+    <link rel="shortcut icon" href="/static/images/flecha_azul_xs.png">
+</head>
+
+{% block content %} 
+
+
+<div id="container">
+    <div id="formucontei">
+        <div id="formucontei2">
+            <h2 class="titulos">Inscripcion a Talleres del IMBA</h2>
+            <hr>
+            <small>
+                <p>Complete el formulario con los datos solicitados para iniciar la solicitud.
+                <p>Los campos con (*) son obligatorios.</p></p>
+            </small>
+            <br>
+            <form method="post" novalidate> <!--Desc. validacion naevagor para ejecutar propias-->
+                {% csrf_token %}                  
+                <label for="email">Mail de contacto</label> 
+                {{ form.email }}
+                {{ form.email.errors }}    
+                <label for="telefono">Telefono movil de contacto</label>
+                {{ form.telefono }}  
+                {{ form.telefono.errors }}  
+                <h2 class="titulos">Datos del solicitante</h2>
+
+                <label for="cuil">CUIL del Solicitante (*)</label>
+                {{ form.cuil }}  
+                {{ form.cuil.errors }}  
+                <label for="nombre">Apellido y nombres del Solicitante (*)</label>
+                {{ form.nombre }}
+                {{ form.mombre.errors }}    
+                <label for="edad">Edad</label>
+                {{ form.edad }} 
+                {{ form.edad.errors }}   
+                <label for="domicilio">Domicilio (*)</label>
+                {{ form.domicilio }}
+                {{ form.domicilio.errors }}        
+                <h2 class="titulos">Inscripcion a talleres</h2>
+                {{ form.tall }} 
+                {{ form.tall.errors }}   
+                    <small>
+                    <p>Podras realizar tu inscripcion hasta en 2 talleres diferentes</p>
+                    </small>           
+
+                <label>Inscripcion al primer taller</label>
+                <label>Seleccione lugar</label>                                 
+            
+                <label id="tallerLabel" style="display: none;">Seleccione taller</label>     
+                <label>Inscripcion al segundo taller</label>
+                
+                <h2 class="titulos">Confirmacion</h2>
+                <label>¿Desea inscribirse en lista de espera?</label>
+                <br>
+                {{ form.lista }}  
+                <label for="{{ form.lista.id_for_label }}">Acepto</label>
+                <br>
+                <label>¿Autoriza al municipio de general Roca la reproduccion de imagenes 
+                    y videos realizados dentro de las actividades del IMBA?</label>
+                <br>
+                {{ form.fotos }}
+                <label for="{{ form.fotos.id_for_label }}">Acepto</label> 
+                <br> 
+                <button type="submit" id="boton">Enviar</button>
+                <button type="reset" id="boton2">Limpiar</button>
+                <span class="titulos">¡Solicitud enviada!</span>
+                {% if cargado %}
+                    <span class="titulos">¡Solicitud enviada!<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="#80bdff" width="30" height="30" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                    </svg>
+                    </span>
+                {% endif %}
+            </form>
+            <div id="confirmacion">	
+                Los datos aqui consignados tienen carácter de Declaración Jurada, comprometiendose el Solicitante a comunicar al Municipio cualquier modificación sobre los mismos. Cualquier falsedad consignada en esta solicitud dara derecho al Municipio a la cancelación de la misma.<br>
+                La presente solicitud no implica la aceptacion de la misma<br>
+                <br>
+                En caso de confirmar la vacante, usted recibira automaticamente un mail a la casilla de correo consignada.
+                <br>
+                Teléfonos de contacto:  4436448
+                <br>
+                Mail: imba@generalroca.gob.ar
+                </div>
+            <br>
+           
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div id="hoja">
+    <div id="contenido" >
+        <br>
+        <form method="post" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+        <br>
+        {% if cargado %}
+        <p>Persona cargada</p>
+        {% endif %}
+    </div>
+</div>

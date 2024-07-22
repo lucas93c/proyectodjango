@@ -13,19 +13,20 @@ def persona(request, cuil):
     return HttpResponse(persona.full_name)
 
 """Formulario"""
-def formulario_view(request):
+def formulario(request):
+    cargado=False
     if request.method == 'POST':
         form = PersonaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('form:success')
+            cargado=True
+            form = PersonaForm()
     else:
         form = PersonaForm()
-    return render(request, 'form/formulario.html', {'form': form})
+    return render(request, 'formulario.html', {'form': form, 'cargado':cargado})
 
-def success_view(request):
-    return render(request, 'form/success.html')
 """Fin formulario"""
 
 def home(request):
-    return render(request, 'form/base.html')
+    return render(request, 'base.html')
+

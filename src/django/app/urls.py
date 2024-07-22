@@ -17,9 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from form import urls
+from form.views import formulario
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path ('form/', include(urls)),
-    path('', include('form.urls'))
+    path('', include('form.urls')),
 ]
